@@ -7,7 +7,44 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObjects", "Business
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{233C78A2-36C4-448D-BE4D-6A3033322770}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{F6105BE0-BFA9-471A-BAF7-C1DA83802CA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test", "test\test.csproj", "{F6105BE0-BFA9-471A-BAF7-C1DA83802CA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bookstore website", "Bookstore website", "{2F585514-AC59-483D-9D8C-97B8101A9E32}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\books webstie\books webstie\index.html = ..\..\..\Downloads\books webstie\books webstie\index.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{1C904AC3-1AE2-473B-A1AF-D3FC7C79BF91}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\books webstie\books webstie\css\style.css = ..\..\..\Downloads\books webstie\books webstie\css\style.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "image", "image", "{EB0A8395-70C6-4636-8246-D542D3341F10}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\books webstie\books webstie\image\banner-bg.jpg = ..\..\..\Downloads\books webstie\books webstie\image\banner-bg.jpg
+		..\..\..\Downloads\books webstie\books webstie\image\blog-1.jpg = ..\..\..\Downloads\books webstie\books webstie\image\blog-1.jpg
+		..\..\..\Downloads\books webstie\books webstie\image\blog-2.jpg = ..\..\..\Downloads\books webstie\books webstie\image\blog-2.jpg
+		..\..\..\Downloads\books webstie\books webstie\image\blog-3.jpg = ..\..\..\Downloads\books webstie\books webstie\image\blog-3.jpg
+		..\..\..\Downloads\books webstie\books webstie\image\blog-4.jpg = ..\..\..\Downloads\books webstie\books webstie\image\blog-4.jpg
+		..\..\..\Downloads\books webstie\books webstie\image\book-10.png = ..\..\..\Downloads\books webstie\books webstie\image\book-10.png
+		..\..\..\Downloads\books webstie\books webstie\image\book-3.png = ..\..\..\Downloads\books webstie\books webstie\image\book-3.png
+		..\..\..\Downloads\books webstie\books webstie\image\book-4.png = ..\..\..\Downloads\books webstie\books webstie\image\book-4.png
+		..\..\..\Downloads\books webstie\books webstie\image\book-5.png = ..\..\..\Downloads\books webstie\books webstie\image\book-5.png
+		..\..\..\Downloads\books webstie\books webstie\image\book-6.png = ..\..\..\Downloads\books webstie\books webstie\image\book-6.png
+		..\..\..\Downloads\books webstie\books webstie\image\book5.png = ..\..\..\Downloads\books webstie\books webstie\image\book5.png
+		..\..\..\Downloads\books webstie\books webstie\image\deal-img.jpg = ..\..\..\Downloads\books webstie\books webstie\image\deal-img.jpg
+		..\..\..\Downloads\books webstie\books webstie\image\letter-bg.jpg = ..\..\..\Downloads\books webstie\books webstie\image\letter-bg.jpg
+		..\..\..\Downloads\books webstie\books webstie\image\loader-img.gif = ..\..\..\Downloads\books webstie\books webstie\image\loader-img.gif
+		..\..\..\Downloads\books webstie\books webstie\image\pic-1.png = ..\..\..\Downloads\books webstie\books webstie\image\pic-1.png
+		..\..\..\Downloads\books webstie\books webstie\image\pic-6.png = ..\..\..\Downloads\books webstie\books webstie\image\pic-6.png
+		..\..\..\Downloads\books webstie\books webstie\image\stand.png = ..\..\..\Downloads\books webstie\books webstie\image\stand.png
+		..\..\..\Downloads\books webstie\books webstie\image\worldmap.png = ..\..\..\Downloads\books webstie\books webstie\image\worldmap.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{1935FFB5-AC7C-4BAE-AE4D-CF0713093CDA}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\books webstie\books webstie\js\script.js = ..\..\..\Downloads\books webstie\books webstie\js\script.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +67,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1C904AC3-1AE2-473B-A1AF-D3FC7C79BF91} = {2F585514-AC59-483D-9D8C-97B8101A9E32}
+		{EB0A8395-70C6-4636-8246-D542D3341F10} = {2F585514-AC59-483D-9D8C-97B8101A9E32}
+		{1935FFB5-AC7C-4BAE-AE4D-CF0713093CDA} = {2F585514-AC59-483D-9D8C-97B8101A9E32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A62391DD-31CB-4ED4-AB65-7DC0A2745077}
