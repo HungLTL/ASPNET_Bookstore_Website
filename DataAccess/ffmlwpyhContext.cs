@@ -34,7 +34,7 @@ namespace DataAccess
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Server=tiny.db.elephantsql.com;Database=ffmlwpyh;User Id=ffmlwpyh;Password=CFJdEwcMSs6L-Dmi92kNP9voHUOjVNgu;Port=5432");
+                optionsBuilder.UseNpgsql(ConnStr.Get());
             }
         }
 
