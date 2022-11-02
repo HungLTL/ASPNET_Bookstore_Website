@@ -12,8 +12,8 @@ namespace DataAccess.BookDA
         IEnumerable<Book> getBooks();
         IEnumerable<Book> searchBooks(string? search, int? publishedYear, decimal? unitPrice, int? category, string? publisher);
         Book getBook(int id);
-        void addBook(Book book);
-        void updateBook(Book book);
-        void deleteBook(Book book);
+        int addBook(Book book);
+        int updateBook(Book book);
+        int deleteBook(Book book);
     }
 }

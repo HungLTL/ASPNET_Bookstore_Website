@@ -11,7 +11,7 @@ namespace DataAccess.AuthorDA
     {
         IEnumerable<Author> getAuthors();
         Author getAuthor(int id);
-        void addAuthor(Author author);
-        void updateAuthor(Author author);
+        int addAuthor(Author author);
+        int updateAuthor(Author author);
     }
 }

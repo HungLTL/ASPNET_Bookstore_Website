@@ -9,9 +9,9 @@ namespace DataAccess.BookDA
 {
     public class BookRepository : IBookRepository
     {
-        public void addBook(Book book) => BookDAO.Instance.addBook(book);
+        public int addBook(Book book) => BookDAO.Instance.addBook(book);
 
-        public void deleteBook(Book book) => BookDAO.Instance.deleteBook(book);
+        public int deleteBook(Book book) => BookDAO.Instance.deleteBook(book);
 
         public Book getBook(int id) => BookDAO.Instance.getBook(id);
 
@@ -19,6 +19,6 @@ namespace DataAccess.BookDA
 
         public IEnumerable<Book> searchBooks(string? search, int? publishedYear, decimal? unitPrice, int? category, string? publisher) => BookDAO.Instance.searchBooks(search, publishedYear, unitPrice, category, publisher);
 
-        public void updateBook(Book book) => BookDAO.Instance.updateBook(book);
+        public int updateBook(Book book) => BookDAO.Instance.updateBook(book);
     }
 }

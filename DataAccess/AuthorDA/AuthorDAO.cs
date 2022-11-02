@@ -53,7 +53,7 @@ namespace DataAccess.AuthorDA
             return author;
         }
 
-        public void addAuthor(Author author)
+        public int addAuthor(Author author)
         {
             Author _author = getAuthor(author.Id);
             if (_author == null)
@@ -63,6 +63,7 @@ namespace DataAccess.AuthorDA
                     var context = new ffmlwpyhContext();
                     context.Authors.Add(author);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -70,10 +71,12 @@ namespace DataAccess.AuthorDA
                 }
             }
             else
+            {
                 throw new Exception("Author already exists!");
+            }
         }
 
-        public void updateAuthor(Author author)
+        public int updateAuthor(Author author)
         {
             Author _author = getAuthor(author.Id);
             if (_author != null)
@@ -81,7 +84,8 @@ namespace DataAccess.AuthorDA
                 try
                 {
                     var context = new ffmlwpyhContext();
-                    context.Entry(author).State = 
+                    context.Entry(author).State = EntityState.Modified;
+                    return 1;
                 }
                 catch (Exception e)
                 {

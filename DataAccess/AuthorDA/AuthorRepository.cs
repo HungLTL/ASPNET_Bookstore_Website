@@ -9,11 +9,11 @@ namespace DataAccess.AuthorDA
 {
     public class AuthorRepository : IAuthorRepository
     {
-        public void addAuthor(Author author) => AuthorDAO.Instance.addAuthor(author);
+        public int addAuthor(Author author) => AuthorDAO.Instance.addAuthor(author);
         public Author getAuthor(int id) => AuthorDAO.Instance.getAuthor(id);
 
         public IEnumerable<Author> getAuthors() => AuthorDAO.Instance.getAuthors();
 
-        public void updateAuthor(Author author) => AuthorDAO.Instance.updateAuthor(author);
+        public int updateAuthor(Author author) => AuthorDAO.Instance.updateAuthor(author);
     }
 }

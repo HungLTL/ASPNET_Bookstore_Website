@@ -79,7 +79,7 @@ namespace DataAccess.BookDA
             return book;
         }
 
-        public void addBook(Book book)
+        public int addBook(Book book)
         {
             Book _book = getBook(book.Id);
             if (_book == null)
@@ -89,6 +89,7 @@ namespace DataAccess.BookDA
                     var context = new ffmlwpyhContext();
                     context.Books.Add(book);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -99,7 +100,7 @@ namespace DataAccess.BookDA
                 throw new Exception("Book already exists!");
         }
 
-        public void updateBook(Book book)
+        public int updateBook(Book book)
         {
             Book _book = getBook(book.Id);
             if (_book != null)
@@ -109,6 +110,7 @@ namespace DataAccess.BookDA
                     var context = new ffmlwpyhContext();
                     context.Entry(book).State = EntityState.Modified;
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -119,7 +121,7 @@ namespace DataAccess.BookDA
                 throw new Exception("Book doesn't exist!");
         }
 
-        public void deleteBook(Book book)
+        public int deleteBook(Book book)
         {
             Book _book = getBook(book.Id);
             if (_book != null)
@@ -129,6 +131,7 @@ namespace DataAccess.BookDA
                     var context = new ffmlwpyhContext();
                     context.Books.Remove(book);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
