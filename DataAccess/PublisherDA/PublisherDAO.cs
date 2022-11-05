@@ -68,7 +68,7 @@ namespace DataAccess.PublisherDA
             return publisher;
         }
 
-        public void addPublisher(Publisher publisher)
+        public int addPublisher(Publisher publisher)
         {
             Publisher _publisher = getPublisher(publisher.Id);
             if (_publisher == null)
@@ -78,6 +78,7 @@ namespace DataAccess.PublisherDA
                     var context = new ffmlwpyhContext();
                     context.Publishers.Add(publisher);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -87,7 +88,7 @@ namespace DataAccess.PublisherDA
             else throw new Exception("Publisher already exists!");
         }
 
-        public void updatePublisher(Publisher publisher)
+        public int updatePublisher(Publisher publisher)
         {
             Publisher _publisher = getPublisher(publisher.Id);
             if (_publisher != null)
@@ -97,6 +98,7 @@ namespace DataAccess.PublisherDA
                     var context = new ffmlwpyhContext();
                     context.Entry(publisher).State = EntityState.Modified;
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {

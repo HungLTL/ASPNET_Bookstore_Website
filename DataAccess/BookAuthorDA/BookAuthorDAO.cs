@@ -50,6 +50,15 @@ namespace DataAccess.BookAuthorDA
             }
         }
 
+        public IEnumerable<Book>? getBooksByAuthor(int authorId)
+        {
+            Author author = AuthorDAO.Instance.getAuthor(authorId);
+            if (author == null)
+                throw new Exception("Author not found!");
+            else
+                return getBooksByAuthor(author);
+        }
+
         public IEnumerable<Author>? getAuthors(Book book)
         {
             List<Bookauthor> BookAuthors = new List<Bookauthor>();
@@ -75,6 +84,15 @@ namespace DataAccess.BookAuthorDA
             }
         }
 
+        public IEnumerable<Author>? getAuthors(int bookId)
+        {
+            Book book = BookDAO.Instance.getBook(bookId);
+            if (book == null)
+                throw new Exception("Book not found!");
+            else
+                return getAuthors(book);
+        }
+
         public Bookauthor getBookAuthor(Book book, Author author)
         {
             Bookauthor bookAuthor = null;
@@ -89,7 +107,22 @@ namespace DataAccess.BookAuthorDA
             return bookAuthor;
         }
 
-        public void addBookAuthor(Bookauthor BookAuthor)
+        public Bookauthor getBookAuthor(int bookId, int authorId)
+        {
+            Book book = BookDAO.Instance.getBook(bookId);
+            if (book == null)
+                throw new Exception("Book not found!");
+            else
+            {
+                Author author = AuthorDAO.Instance.getAuthor(authorId);
+                if (author == null)
+                    throw new Exception("Author not found!");
+                else
+                    return getBookAuthor(book, author);
+            }
+        }
+
+        public int addBookAuthor(Bookauthor BookAuthor)
         {
             Book _book = BookDAO.Instance.getBook(BookAuthor.BookId);
             Author _author = AuthorDAO.Instance.getAuthor(BookAuthor.AuthorId);
@@ -102,6 +135,7 @@ namespace DataAccess.BookAuthorDA
                         var context = new ffmlwpyhContext();
                         context.Bookauthors.Add(BookAuthor);
                         context.SaveChanges();
+                        return 1;
                     }
                     catch (Exception e)
                     {
@@ -115,7 +149,7 @@ namespace DataAccess.BookAuthorDA
                 throw new Exception("Book or author doesn't exist!");
         }
 
-        public void deleteBookAuthor(Bookauthor BookAuthor)
+        public int deleteBookAuthor(Bookauthor BookAuthor)
         {
             Book _book = BookDAO.Instance.getBook(BookAuthor.BookId);
             Author _author = AuthorDAO.Instance.getAuthor(BookAuthor.AuthorId);
@@ -128,6 +162,7 @@ namespace DataAccess.BookAuthorDA
                         var context = new ffmlwpyhContext();
                         context.Bookauthors.Remove(BookAuthor);
                         context.SaveChanges();
+                        return 1;
                     }
                     catch (Exception e)
                     {

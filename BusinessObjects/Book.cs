@@ -18,6 +18,7 @@ namespace BusinessObjects
         public byte[] Image { get; set; }
         public int CategoryId { get; set; }
         public int PublisherId { get; set; }
+        public int Quantity { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual Publisher Publisher { get; set; }

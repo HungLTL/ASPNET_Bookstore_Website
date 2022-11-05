@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using DataAccess.BookDA;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,13 @@ namespace DataAccess.PurchaseDetailDA
                     var context = new ffmlwpyhContext();
                     context.PurchaseDetails.Add(detail);
                     context.SaveChanges();
+
+                    Book book = BookDAO.Instance.getBook(detail.BookId);
+                    if (detail.Amount != null)
+                    {
+                        book.Quantity -= detail.Amount.Value;
+                        BookDAO.Instance.updateBook(book);
+                    }
                 } catch(Exception e)
                 {
                     throw new Exception(e.Message);

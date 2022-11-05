@@ -9,12 +9,12 @@ namespace DataAccess.PublisherDA
 {
     public class PublisherRepository : IPublisherRepository
     {
-        public void addPublisher(Publisher publisher) => PublisherDAO.Instance.addPublisher(publisher);
+        public int addPublisher(Publisher publisher) => PublisherDAO.Instance.addPublisher(publisher);
 
         public Publisher getPublisher(int id) => PublisherDAO.Instance.getPublisher(id);
 
         public IEnumerable<Publisher> getPublishers() => PublisherDAO.Instance.getPublishers();
 
-        public void updatePublisher(Publisher publisher) => PublisherDAO.Instance.updatePublisher(publisher);
+        public int updatePublisher(Publisher publisher) => PublisherDAO.Instance.updatePublisher(publisher);
     }
 }

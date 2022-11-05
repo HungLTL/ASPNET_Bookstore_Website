@@ -11,7 +11,7 @@ namespace DataAccess.PublisherDA
     {
         IEnumerable<Publisher> getPublishers();
         Publisher getPublisher(int id);
-        void addPublisher(Publisher publisher);
-        void updatePublisher(Publisher publisher);
+        int addPublisher(Publisher publisher);
+        int updatePublisher(Publisher publisher);
     }
 }
