@@ -1,4 +1,6 @@
 ﻿using BusinessObjects;
+using DataAccess.BookDA;
+using DataAccess.UserDA;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -39,6 +41,15 @@ namespace DataAccess.ReviewDA
             return reviews;
         }
 
+        public IEnumerable<Review> getReviewsByBook(int bookId)
+        {
+            Book book = BookDAO.Instance.getBook(bookId);
+            if (book == null)
+                throw new Exception("Book not found!");
+            else
+                return getReviews(book);
+        }
+
         public IEnumerable<Review> getReviews(User user)
         {
             List<Review> reviews = new List<Review>();
@@ -52,6 +63,15 @@ namespace DataAccess.ReviewDA
                 throw new Exception(e.Message);
             }
             return reviews;
+        }
+
+        public IEnumerable<Review> getReviewsByUser(int userId)
+        {
+            User user = UserDAO.Instance.getUser(userId);
+            if (user == null)
+                throw new Exception("User not found!");
+            else
+                return getReviews(user);
         }
 
         public Review getReview(Book book, User user)
@@ -68,7 +88,22 @@ namespace DataAccess.ReviewDA
             return review;
         }
 
-        public void addReview(Review review)
+        public Review getReview(int bookId, int userId)
+        {
+            Book book = BookDAO.Instance.getBook(bookId);
+            if (book == null)
+                throw new Exception("Book not found!");
+            else
+            {
+                User user = UserDAO.Instance.getUser(userId);
+                if (user == null)
+                    throw new Exception("User not found!");
+                else
+                    return getReview(book, user);
+            }
+        }
+
+        public int addReview(Review review)
         {
             Review _review = getReview(review.Book, review.User);
             if (_review == null)
@@ -78,6 +113,7 @@ namespace DataAccess.ReviewDA
                     var context = new ffmlwpyhContext();
                     context.Reviews.Add(review);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -88,7 +124,7 @@ namespace DataAccess.ReviewDA
                 throw new Exception("Review already exists!");
         }
 
-        public void updateReview(Review review)
+        public int updateReview(Review review)
         {
             Review _review = getReview(review.Book, review.User);
             if (_review != null)
@@ -98,6 +134,7 @@ namespace DataAccess.ReviewDA
                     var context = new ffmlwpyhContext();
                     context.Entry(review).State = EntityState.Modified;
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -108,7 +145,7 @@ namespace DataAccess.ReviewDA
                 throw new Exception("Review doesn't exist!");
         }
 
-        public void deleteReview(Review review)
+        public int deleteReview(Review review)
         {
             Review _review = getReview(review.Book, review.User);
             if (_review != null)
@@ -118,6 +155,7 @@ namespace DataAccess.ReviewDA
                     var context = new ffmlwpyhContext();
                     context.Reviews.Remove(review);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {

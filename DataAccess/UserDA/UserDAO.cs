@@ -83,7 +83,7 @@ namespace DataAccess.UserDA
             return user;
         }
 
-        public void addUser(User user)
+        public int addUser(User user)
         {
             User _user = getUser(user.Id);
             if (_user == null)
@@ -93,6 +93,7 @@ namespace DataAccess.UserDA
                     var context = new ffmlwpyhContext();
                     context.Users.Add(user);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -103,7 +104,7 @@ namespace DataAccess.UserDA
                 throw new Exception("User already exists!");
         }
 
-        public void updateUser(User user)
+        public int updateUser(User user)
         {
             User _user = getUser(user.Id);
             if (_user != null)
@@ -113,6 +114,7 @@ namespace DataAccess.UserDA
                     var context = new ffmlwpyhContext();
                     context.Entry(user).State = EntityState.Modified;
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -123,7 +125,7 @@ namespace DataAccess.UserDA
                 throw new Exception("User doesn't exist!");
         }
 
-        public void deleteUser(User user)
+        public int deleteUser(User user)
         {
             User _user = getUser(user.Id);
             if (_user != null)
@@ -133,6 +135,7 @@ namespace DataAccess.UserDA
                     var context = new ffmlwpyhContext();
                     context.Users.Remove(user);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {

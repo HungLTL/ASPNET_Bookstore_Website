@@ -41,16 +41,26 @@ namespace BookstoreAPI.Controllers
                 return Ok(bookauthor);
         }
 
-        // PUT api/<BookAuthorsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost]
+        public IActionResult PostBookAuthor(Bookauthor bookAuthor)
         {
+            if (_repo.addBookAuthor(bookAuthor) == 1)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         // DELETE api/<BookAuthorsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{book}/{author}")]
+        public IActionResult Delete(int book, int author, Bookauthor bookAuthor)
         {
+            if (book != bookAuthor.BookId || author != bookAuthor.AuthorId)
+                return BadRequest();
+
+            if (_repo.deleteBookAuthor(bookAuthor) == 1)
+                return Ok();
+            else
+                return NotFound();
         }
     }
 }

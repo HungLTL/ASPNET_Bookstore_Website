@@ -1,5 +1,6 @@
 ﻿using BusinessObjects;
 using DataAccess.BookDA;
+using DataAccess.ImportDA;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,15 @@ namespace DataAccess.ImportDetailDA
             return details;
         }
 
+        public IEnumerable<ImportDetail> getDetails(int importId)
+        {
+            Import import = ImportDAO.Instance.getImport(importId);
+            if (import == null)
+                throw new Exception("Import not found!");
+            else
+                return getDetails(import);
+        }
+
         public IEnumerable<ImportDetail> getImports(Book book)
         {
             List<ImportDetail> details = new List<ImportDetail>();
@@ -53,6 +63,15 @@ namespace DataAccess.ImportDetailDA
                 throw new Exception(e.Message);
             }
             return details;
+        }
+
+        public IEnumerable<ImportDetail> getImports(int bookId)
+        {
+            Book book = BookDAO.Instance.getBook(bookId);
+            if (book == null)
+                throw new Exception("Book not found!");
+            else
+                return getImports(book);
         }
 
         public ImportDetail getDetail(Import import, Book book)
@@ -69,7 +88,22 @@ namespace DataAccess.ImportDetailDA
             return detail;
         }
 
-        public void addDetail(ImportDetail detail)
+        public ImportDetail getDetail(int importId, int bookId)
+        {
+            Import import = ImportDAO.Instance.getImport(importId);
+            if (import == null)
+                throw new Exception("Import not found!");
+            else
+            {
+                Book book = BookDAO.Instance.getBook(bookId);
+                if (book == null)
+                    throw new Exception("Book not found!");
+                else
+                    return getDetail(import, book);
+            }
+        }
+
+        public int addDetail(ImportDetail detail)
         {
             ImportDetail _detail = getDetail(detail.Import, detail.Book);
             if (detail == null)
@@ -84,7 +118,8 @@ namespace DataAccess.ImportDetailDA
                     if (detail.Amount != null) {
                         book.Quantity += detail.Amount.Value;
                         BookDAO.Instance.updateBook(book);
-                    }                 
+                    }
+                    return 1;
                 } catch(Exception e)
                 {
                     throw new Exception(e.Message);
@@ -93,10 +128,11 @@ namespace DataAccess.ImportDetailDA
             {
                 detail.Amount += _detail.Amount;
                 updateDetail(detail);
+                return 1;
             }
         }
 
-        public void updateDetail(ImportDetail detail)
+        public int updateDetail(ImportDetail detail)
         {
             ImportDetail _detail = getDetail(detail.Import, detail.Book);
             if (detail != null)
@@ -106,6 +142,14 @@ namespace DataAccess.ImportDetailDA
                     var context = new ffmlwpyhContext();
                     context.Entry(detail).State = EntityState.Modified;
                     context.SaveChanges();
+
+                    Book book = BookDAO.Instance.getBook(detail.BookId);
+                    if (detail.Amount != null)
+                    {
+                        book.Quantity += detail.Amount.Value;
+                        BookDAO.Instance.updateBook(book);
+                    }
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -116,7 +160,7 @@ namespace DataAccess.ImportDetailDA
                 throw new Exception("Detail doesn't exist!");
         }
 
-        public void deleteDetail(ImportDetail detail)
+        public int deleteDetail(ImportDetail detail)
         {
             ImportDetail _detail = getDetail(detail.Import, detail.Book);
             if (detail != null)
@@ -126,6 +170,7 @@ namespace DataAccess.ImportDetailDA
                     var context = new ffmlwpyhContext();
                     context.ImportDetails.Remove(detail);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {

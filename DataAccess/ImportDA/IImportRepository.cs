@@ -12,8 +12,8 @@ namespace DataAccess.ImportDA
         IEnumerable<Import> getImports();
         IEnumerable<Import> getImports(DateOnly from, DateOnly to);
         Import getImport(int id);
-        void addImport(Import import);
-        void updateImport(Import import);
-        void deleteImport(Import import);
+        int addImport(Import import);
+        int updateImport(Import import);
+        int deleteImport(Import import);
     }
 }

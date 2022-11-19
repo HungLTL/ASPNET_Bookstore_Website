@@ -13,8 +13,8 @@ namespace DataAccess.UserDA
         User getUser(int id);
         User validateUser(string username, string password);
         User validateEmail(string email, string password);
-        void addUser(User user);
-        void updateUser(User user);
-        void deleteUser(User user);
+        int addUser(User user);
+        int updateUser(User user);
+        int deleteUser(User user);
     }
 }

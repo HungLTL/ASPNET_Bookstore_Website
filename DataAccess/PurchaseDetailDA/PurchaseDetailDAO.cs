@@ -1,5 +1,6 @@
 ﻿using BusinessObjects;
 using DataAccess.BookDA;
+using DataAccess.PurchaseDA;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,15 @@ namespace DataAccess.PurchaseDetailDA
             return list;
         }
 
+        public IEnumerable<PurchaseDetail> getDetails(int purchaseId)
+        {
+            Purchase purchase = PurchaseDAO.Instance.getPurchase(purchaseId);
+            if (purchase == null)
+                throw new Exception("Purchase not found!");
+            else
+                return getDetails(purchase);
+        }
+
         public IEnumerable<PurchaseDetail> getPurchases(Book book)
         {
             List<PurchaseDetail> list = new List<PurchaseDetail>();
@@ -53,6 +63,15 @@ namespace DataAccess.PurchaseDetailDA
                 throw new Exception(e.Message);
             }
             return list;
+        }
+
+        public IEnumerable<PurchaseDetail> getPurchases(int bookId)
+        {
+            Book book = BookDAO.Instance.getBook(bookId);
+            if (book == null)
+                throw new Exception("Book not found!");
+            else
+                return getPurchases(book);
         }
 
         public PurchaseDetail getDetail(Purchase purchase, Book book)
@@ -69,7 +88,22 @@ namespace DataAccess.PurchaseDetailDA
             return detail;
         }
 
-        public void addDetail(PurchaseDetail detail) {
+        public PurchaseDetail getDetail(int purchaseId, int bookId)
+        {
+            Purchase purchase = PurchaseDAO.Instance.getPurchase(purchaseId);
+            if (purchase == null)
+                throw new Exception("Purchase not found!");
+            else
+            {
+                Book book = BookDAO.Instance.getBook(bookId);
+                if (book == null)
+                    throw new Exception("Book not found!");
+                else
+                    return getDetail(purchase, book);
+            }
+        }
+
+        public int addDetail(PurchaseDetail detail) {
             PurchaseDetail _detail = getDetail(detail.Purchase, detail.Book);
             if (_detail == null)
             {
@@ -85,6 +119,7 @@ namespace DataAccess.PurchaseDetailDA
                         book.Quantity -= detail.Amount.Value;
                         BookDAO.Instance.updateBook(book);
                     }
+                    return 1;
                 } catch(Exception e)
                 {
                     throw new Exception(e.Message);
@@ -93,10 +128,11 @@ namespace DataAccess.PurchaseDetailDA
             {
                 detail.Amount += _detail.Amount;
                 updateDetail(detail);
+                return 1;
             }
         }
 
-        public void updateDetail(PurchaseDetail detail)
+        public int updateDetail(PurchaseDetail detail)
         {
             PurchaseDetail _detail = getDetail(detail.Purchase, detail.Book);
             if (_detail != null)
@@ -106,6 +142,14 @@ namespace DataAccess.PurchaseDetailDA
                     var context = new ffmlwpyhContext();
                     context.Entry(detail).State = EntityState.Modified;
                     context.SaveChanges();
+
+                    Book book = BookDAO.Instance.getBook(detail.BookId);
+                    if (detail.Amount != null)
+                    {
+                        book.Quantity -= detail.Amount.Value;
+                        BookDAO.Instance.updateBook(book);
+                    }
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -116,7 +160,7 @@ namespace DataAccess.PurchaseDetailDA
                 throw new Exception("Detail doesn't exist!");
         }
 
-        public void deleteDetail(PurchaseDetail detail)
+        public int deleteDetail(PurchaseDetail detail)
         {
             PurchaseDetail _detail = getDetail(detail.Purchase, detail.Book);
             if (_detail != null)
@@ -126,6 +170,7 @@ namespace DataAccess.PurchaseDetailDA
                     var context = new ffmlwpyhContext();
                     context.PurchaseDetails.Remove(detail);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {

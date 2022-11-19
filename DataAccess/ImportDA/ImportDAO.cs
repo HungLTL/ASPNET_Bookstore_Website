@@ -68,7 +68,7 @@ namespace DataAccess.ImportDA
             return import;
         }
 
-        public void addImport(Import import)
+        public int addImport(Import import)
         {
             Import _import = getImport(import.Id);
             if (_import == null)
@@ -78,6 +78,7 @@ namespace DataAccess.ImportDA
                     var context = new ffmlwpyhContext();
                     context.Imports.Add(import);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -88,7 +89,7 @@ namespace DataAccess.ImportDA
                 throw new Exception("Import already exists!");
         }
 
-        public void updateImport(Import import)
+        public int updateImport(Import import)
         {
             Import _import = getImport(import.Id);
             if (_import != null)
@@ -98,6 +99,7 @@ namespace DataAccess.ImportDA
                     var context = new ffmlwpyhContext();
                     context.Entry(import).State = EntityState.Modified;
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -108,7 +110,7 @@ namespace DataAccess.ImportDA
                 throw new Exception("Import doesn't exist!");
         }
 
-        public void deleteImport(Import import)
+        public int deleteImport(Import import)
         {
             Import _import = getImport(import.Id);
             if (_import != null)
@@ -118,6 +120,7 @@ namespace DataAccess.ImportDA
                     var context = new ffmlwpyhContext();
                     context.Imports.Remove(import);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {

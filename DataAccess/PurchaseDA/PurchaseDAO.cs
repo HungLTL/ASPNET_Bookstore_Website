@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using DataAccess.UserDA;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,15 @@ namespace DataAccess.PurchaseDA
             return purchases;
         }
 
+        public IEnumerable<Purchase> getPurchases(int userId)
+        {
+            User user = UserDAO.Instance.getUser(userId);
+            if (user == null)
+                throw new Exception("User not found!");
+            else
+                return getPurchases(user);
+        }
+
         public IEnumerable<Purchase> getPurchases(DateOnly from, DateOnly to)
         {
             List<Purchase> purchases = new List<Purchase>();
@@ -83,7 +93,7 @@ namespace DataAccess.PurchaseDA
             return purchase;
         }
 
-        public void addPurchse(Purchase purchase)
+        public int addPurchse(Purchase purchase)
         {
             Purchase _purchase = getPurchase(purchase.Id);
             if (_purchase == null)
@@ -93,6 +103,7 @@ namespace DataAccess.PurchaseDA
                     var context = new ffmlwpyhContext();
                     context.Purchases.Add(purchase);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -103,7 +114,7 @@ namespace DataAccess.PurchaseDA
                 throw new Exception("Purchase already exists!");
         }
 
-        public void updatePurchase(Purchase purchase)
+        public int updatePurchase(Purchase purchase)
         {
             Purchase _purchase = getPurchase(purchase.Id);
             if (_purchase != null)
@@ -113,6 +124,7 @@ namespace DataAccess.PurchaseDA
                     var context = new ffmlwpyhContext();
                     context.Entry(purchase).State = EntityState.Modified;
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {
@@ -123,7 +135,7 @@ namespace DataAccess.PurchaseDA
                 throw new Exception("Purchase doesn't exist!");
         }
 
-        public void deletePurchase(Purchase purchase)
+        public int deletePurchase(Purchase purchase)
         {
             Purchase _purchase = getPurchase(purchase.Id);
             if (_purchase != null)
@@ -133,6 +145,7 @@ namespace DataAccess.PurchaseDA
                     var context = new ffmlwpyhContext();
                     context.Purchases.Remove(purchase);
                     context.SaveChanges();
+                    return 1;
                 }
                 catch (Exception e)
                 {

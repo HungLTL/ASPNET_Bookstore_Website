@@ -9,9 +9,9 @@ namespace DataAccess.ImportDA
 {
     public class ImportRepository : IImportRepository
     {
-        public void addImport(Import import) => ImportDAO.Instance.addImport(import);
+        public int addImport(Import import) => ImportDAO.Instance.addImport(import);
 
-        public void deleteImport(Import import) => ImportDAO.Instance.deleteImport(import);
+        public int deleteImport(Import import) => ImportDAO.Instance.deleteImport(import);
 
         public Import getImport(int id) => ImportDAO.Instance.getImport(id);
 
@@ -19,6 +19,6 @@ namespace DataAccess.ImportDA
 
         public IEnumerable<Import> getImports(DateOnly from, DateOnly to) => ImportDAO.Instance.getImports(from, to);
 
-        public void updateImport(Import import) => ImportDAO.Instance.updateImport(import);
+        public int updateImport(Import import) => ImportDAO.Instance.updateImport(import);
     }
 }

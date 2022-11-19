@@ -9,9 +9,9 @@ namespace DataAccess.PurchaseDA
 {
     public class PurchaseRepository : IPurchaseRepository
     {
-        public void addPurchase(Purchase purchase) => PurchaseDAO.Instance.addPurchse(purchase);
+        public int addPurchase(Purchase purchase) => PurchaseDAO.Instance.addPurchse(purchase);
 
-        public void deletePurchase(Purchase purchase) => PurchaseDAO.Instance.deletePurchase(purchase);
+        public int deletePurchase(Purchase purchase) => PurchaseDAO.Instance.deletePurchase(purchase);
 
         public Purchase getPurchase(int id) => PurchaseDAO.Instance.getPurchase(id);
 
@@ -21,6 +21,8 @@ namespace DataAccess.PurchaseDA
 
         public IEnumerable<Purchase> getPurchases(DateOnly from, DateOnly to) => PurchaseDAO.Instance.getPurchases(from, to);
 
-        public void updatePurchase(Purchase purchase) => PurchaseDAO.Instance.updatePurchase(purchase);
+        public IEnumerable<Purchase> getPurchases(int userId) => PurchaseDAO.Instance.getPurchases(userId);
+
+        public int updatePurchase(Purchase purchase) => PurchaseDAO.Instance.updatePurchase(purchase);
     }
 }

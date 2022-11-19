@@ -10,10 +10,13 @@ namespace DataAccess.ImportDetailDA
     public interface IImportDetailRepository
     {
         IEnumerable<ImportDetail> getDetails(Import import);
+        IEnumerable<ImportDetail> getDetails(int importId);
         IEnumerable<ImportDetail> getImports(Book book);
+        IEnumerable<ImportDetail> getImports(int bookId);
         ImportDetail getDetail(Import import, Book book);
-        void addDetail(ImportDetail detail);
-        void updateDetail(ImportDetail detail);
-        void deleteDetail(ImportDetail detail);
+        ImportDetail getDetail(int importId, int bookId);
+        int addDetail(ImportDetail detail);
+        int updateDetail(ImportDetail detail);
+        int deleteDetail(ImportDetail detail);
     }
 }

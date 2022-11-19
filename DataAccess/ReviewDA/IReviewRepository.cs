@@ -12,8 +12,11 @@ namespace DataAccess.ReviewDA
         IEnumerable<Review> getReviews(Book book);
         IEnumerable<Review> getReviews(User user);
         Review getReview(Book book, User user);
-        void addReview(Review review);
-        void updateReview(Review review);
-        void deleteReview(Review review);
+        IEnumerable<Review> getReviewsByBook(int bookId);
+        IEnumerable<Review> getReviewsByUser(int userId);
+        Review getReview(int bookId, int userId);
+        int addReview(Review review);
+        int updateReview(Review review);
+        int deleteReview(Review review);
     }
 }
