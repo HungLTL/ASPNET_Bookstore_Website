@@ -15,9 +15,9 @@ namespace BookstoreAPI.Controllers
     [ApiController]
     public class AuthorsController : ControllerBase
     {
-        private readonly AuthorRepository _repo;
+        private readonly IAuthorRepository _repo;
 
-        public AuthorsController(AuthorRepository repo)
+        public AuthorsController(IAuthorRepository repo)
         {
             _repo = repo;
         }

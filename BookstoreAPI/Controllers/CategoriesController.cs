@@ -10,8 +10,8 @@ namespace BookstoreAPI.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly CategoryRepository _repo;
-        public CategoriesController(CategoryRepository repo)
+        private readonly ICategoryRepository _repo;
+        public CategoriesController(ICategoryRepository repo)
         {
             _repo = repo;
         }

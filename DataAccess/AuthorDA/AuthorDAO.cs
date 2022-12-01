@@ -41,7 +41,7 @@ namespace DataAccess.AuthorDA
 
         public Author getAuthor(int id)
         {
-            Author author = null;
+            Author? author = null;
             try
             {
                 var context = new ffmlwpyhContext();

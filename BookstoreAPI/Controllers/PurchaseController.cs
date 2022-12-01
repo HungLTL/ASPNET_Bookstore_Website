@@ -9,8 +9,8 @@ namespace BookstoreAPI.Controllers
     [ApiController]
     public class PurchaseController : ControllerBase
     {
-        private readonly PurchaseRepository _repo;
-        public PurchaseController(PurchaseRepository repo)
+        private readonly IPurchaseRepository _repo;
+        public PurchaseController(IPurchaseRepository repo)
         {
             _repo = repo;
         }

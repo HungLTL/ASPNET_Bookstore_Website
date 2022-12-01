@@ -9,8 +9,8 @@ namespace BookstoreAPI.Controllers
     [ApiController]
     public class ReviewController : ControllerBase
     {
-        private readonly ReviewRepository _repo;
-        public ReviewController(ReviewRepository repo)
+        private readonly IReviewRepository _repo;
+        public ReviewController(IReviewRepository repo)
         {
             _repo = repo;
         }

@@ -9,8 +9,8 @@ namespace BookstoreAPI.Controllers
     [ApiController]
     public class ImportController : ControllerBase
     {
-        private readonly ImportRepository _repo;
-        public ImportController(ImportRepository repo)
+        private readonly IImportRepository _repo;
+        public ImportController(IImportRepository repo)
         {
             _repo = repo;
         }

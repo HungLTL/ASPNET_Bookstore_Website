@@ -9,8 +9,8 @@ namespace BookstoreAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UserRepository _repo;
-        public UsersController(UserRepository repo)
+        private readonly IUserRepository _repo;
+        public UsersController(IUserRepository repo)
         {
             _repo = repo;
         }

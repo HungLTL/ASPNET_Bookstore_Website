@@ -10,8 +10,8 @@ namespace BookstoreAPI.Controllers
     [ApiController]
     public class BookAuthorsController : ControllerBase
     {
-        private readonly BookAuthorRepository _repo;
-        public BookAuthorsController(BookAuthorRepository repo)
+        private readonly IBookAuthorRepository _repo;
+        public BookAuthorsController(IBookAuthorRepository repo)
         {
             _repo = repo;
         }
