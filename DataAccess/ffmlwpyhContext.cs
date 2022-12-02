@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BusinessObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -95,6 +94,8 @@ namespace DataAccess
 
                 entity.Property(e => e.PublisherId).HasColumnName("publisher_id");
 
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
+
                 entity.Property(e => e.Summary)
                     .HasMaxLength(300)
                     .HasColumnName("summary");
@@ -148,7 +149,7 @@ namespace DataAccess
                     .HasColumnName("id");
 
                 entity.Property(e => e.Category1)
-                    .HasMaxLength(20)
+                    .HasMaxLength(100)
                     .HasColumnName("category");
             });
 
