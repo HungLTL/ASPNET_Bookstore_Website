@@ -21,7 +21,7 @@ namespace BookstoreAPI.Controllers
             return await Task.FromResult(_repo.getPurchases().ToList());
         }
 
-        [HttpGet("{user}")]
+        [HttpGet("user/{user}")]
         public async Task<ActionResult<IEnumerable<Purchase>>> GetPurchases(int user)
         {
             return await Task.FromResult(_repo.getPurchases(user).ToList());

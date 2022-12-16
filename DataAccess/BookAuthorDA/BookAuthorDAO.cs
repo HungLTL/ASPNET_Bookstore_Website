@@ -56,7 +56,14 @@ namespace DataAccess.BookAuthorDA
             if (author == null)
                 throw new Exception("Author not found!");
             else
-                return getBooksByAuthor(author);
+            {
+                List<Book>? books = new List<Book>();
+                books = getBooksByAuthor(author)?.ToList();
+                if (books is null || books.Count == 0)
+                    throw new Exception("This author hasn't authored any books yet!");
+                else
+                    return books;
+            }
         }
 
         public IEnumerable<Author>? getAuthors(Book book)
@@ -90,7 +97,14 @@ namespace DataAccess.BookAuthorDA
             if (book == null)
                 throw new Exception("Book not found!");
             else
-                return getAuthors(book);
+            {
+                List<Author>? authors = new List<Author>();
+                authors = getAuthors(book)?.ToList();
+                if (authors is null || authors.Count == 0)
+                    throw new Exception("This book isn't authored by anyone!");
+                else
+                    return authors;
+            }
         }
 
         public Bookauthor getBookAuthor(Book book, Author author)

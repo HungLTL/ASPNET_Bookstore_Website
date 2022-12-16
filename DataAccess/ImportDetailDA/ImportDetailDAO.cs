@@ -47,7 +47,14 @@ namespace DataAccess.ImportDetailDA
             if (import == null)
                 throw new Exception("Import not found!");
             else
-                return getDetails(import);
+            {
+                List<ImportDetail> details = new List<ImportDetail>();
+                details = getDetails(import).ToList();
+                if (details is null || details.Count == 0)
+                    throw new Exception("Empty import!");
+                else
+                    return details;
+            }
         }
 
         public IEnumerable<ImportDetail> getImports(Book book)
@@ -71,7 +78,14 @@ namespace DataAccess.ImportDetailDA
             if (book == null)
                 throw new Exception("Book not found!");
             else
-                return getImports(book);
+            {
+                List<ImportDetail> details = new List<ImportDetail>();
+                details = getImports(book).ToList();
+                if (details is null || details.Count == 0)
+                    throw new Exception("Book was never imported into the store!");
+                else
+                    return details;
+            }
         }
 
         public ImportDetail getDetail(Import import, Book book)

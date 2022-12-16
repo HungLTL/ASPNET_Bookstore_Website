@@ -15,13 +15,13 @@ namespace BookstoreAPI.Controllers
             _repo = repo;
         }
 
-        [HttpGet("{purchase}")]
+        [HttpGet("purchase/{purchase}")]
         public async Task<ActionResult<IEnumerable<PurchaseDetail>>> GetDetails(int purchase)
         {
             return await Task.FromResult(_repo.getDetails(purchase).ToList());
         }
 
-        [HttpGet("{book}")]
+        [HttpGet("book/{book}")]
         public async Task<ActionResult<IEnumerable<PurchaseDetail>>> GetPurchases(int book)
         {
             return await Task.FromResult(_repo.getPurchases(book).ToList());

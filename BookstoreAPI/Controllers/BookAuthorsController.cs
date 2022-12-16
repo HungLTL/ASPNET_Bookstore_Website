@@ -17,14 +17,14 @@ namespace BookstoreAPI.Controllers
         }
 
         // GET: api/<BookAuthorsController>
-        [HttpGet("{book}")]
+        [HttpGet("authors/{book}")]
         public async Task<ActionResult<IEnumerable<Author>>> GetAuthors(int book)
         {
             return await Task.FromResult(_repo.getAuthors(book).ToList());
         }
 
         // GET api/<BookAuthorsController>/5
-        [HttpGet("{author}")]
+        [HttpGet("books/{author}")]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooksByAuthor(int author)
         {
             return await Task.FromResult(_repo.getBooksByAuthor(author).ToList());

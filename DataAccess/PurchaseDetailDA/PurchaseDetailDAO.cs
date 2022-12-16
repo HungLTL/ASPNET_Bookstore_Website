@@ -47,7 +47,13 @@ namespace DataAccess.PurchaseDetailDA
             if (purchase == null)
                 throw new Exception("Purchase not found!");
             else
-                return getDetails(purchase);
+            {
+                List<PurchaseDetail> details = new List<PurchaseDetail>();
+                details = getDetails(purchase).ToList();
+                if (details is null || details.Count == 0)
+                    throw new Exception("Empty purchase!");
+                else return details;
+            }
         }
 
         public IEnumerable<PurchaseDetail> getPurchases(Book book)
@@ -71,7 +77,14 @@ namespace DataAccess.PurchaseDetailDA
             if (book == null)
                 throw new Exception("Book not found!");
             else
-                return getPurchases(book);
+            {
+                List<PurchaseDetail> details = new List<PurchaseDetail>();
+                details = getPurchases(book).ToList();
+                if (details is null || details.Count == 0)
+                    throw new Exception("Book has not been purchased by anyone!");
+                else
+                    return details;
+            }
         }
 
         public PurchaseDetail getDetail(Purchase purchase, Book book)

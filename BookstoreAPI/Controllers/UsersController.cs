@@ -31,7 +31,7 @@ namespace BookstoreAPI.Controllers
                 return Ok(user);
         }
 
-        [HttpGet("{email}/{password}")]
+        [HttpGet("email/{email}/{password}")]
         public async Task<ActionResult<User>> ValidateEmail(string email, string password)
         {
             var user = await Task.FromResult(_repo.validateEmail(email, password));
@@ -41,7 +41,7 @@ namespace BookstoreAPI.Controllers
                 return Ok(user);
         }
 
-        [HttpGet("{username}/{password}")]
+        [HttpGet("username/{username}/{password}")]
         public async Task<ActionResult<User>> ValidateUser(string username, string password)
         {
             var user = await Task.FromResult(_repo.validateUser(username, password));

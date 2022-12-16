@@ -47,7 +47,14 @@ namespace DataAccess.ReviewDA
             if (book == null)
                 throw new Exception("Book not found!");
             else
-                return getReviews(book);
+            {
+                List<Review> reviews = new List<Review>();
+                reviews = getReviews(book).ToList();
+                if (reviews is null || reviews.Count == 0)
+                    throw new Exception("Book doesn't have any reviews!");
+                else
+                    return reviews;
+            }
         }
 
         public IEnumerable<Review> getReviews(User user)
@@ -71,7 +78,14 @@ namespace DataAccess.ReviewDA
             if (user == null)
                 throw new Exception("User not found!");
             else
-                return getReviews(user);
+            {
+                List<Review> reviews = new List<Review>();
+                reviews = getReviews(user).ToList();
+                if (reviews is null || reviews.Count == 0)
+                    throw new Exception("User hasn't made any reviews!");
+                else
+                    return reviews;
+            }
         }
 
         public Review getReview(Book book, User user)
