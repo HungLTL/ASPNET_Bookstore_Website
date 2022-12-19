@@ -12,3 +12,17 @@ C:\Users\GF63\source\repos\SE310_EndOfTermProject\BusinessObjects\obj\Debug\net6
 C:\Users\GF63\source\repos\SE310_EndOfTermProject\BusinessObjects\obj\Debug\net6.0\BusinessObjects.pdb
 C:\Users\GF63\source\repos\SE310_EndOfTermProject\BusinessObjects\obj\Debug\net6.0\BusinessObjects.genruntimeconfig.cache
 C:\Users\GF63\source\repos\SE310_EndOfTermProject\BusinessObjects\obj\Debug\net6.0\ref\BusinessObjects.dll
+E:\bookstoreAPI\BusinessObjects\bin\Debug\net6.0\BusinessObjects.deps.json
+E:\bookstoreAPI\BusinessObjects\bin\Debug\net6.0\BusinessObjects.runtimeconfig.json
+E:\bookstoreAPI\BusinessObjects\bin\Debug\net6.0\BusinessObjects.dll
+E:\bookstoreAPI\BusinessObjects\bin\Debug\net6.0\BusinessObjects.pdb
+E:\bookstoreAPI\BusinessObjects\obj\Debug\net6.0\BusinessObjects.csproj.AssemblyReference.cache
+E:\bookstoreAPI\BusinessObjects\obj\Debug\net6.0\BusinessObjects.GeneratedMSBuildEditorConfig.editorconfig
+E:\bookstoreAPI\BusinessObjects\obj\Debug\net6.0\BusinessObjects.AssemblyInfoInputs.cache
+E:\bookstoreAPI\BusinessObjects\obj\Debug\net6.0\BusinessObjects.AssemblyInfo.cs
+E:\bookstoreAPI\BusinessObjects\obj\Debug\net6.0\BusinessObjects.csproj.CoreCompileInputs.cache
+E:\bookstoreAPI\BusinessObjects\obj\Debug\net6.0\BusinessObjects.dll
+E:\bookstoreAPI\BusinessObjects\obj\Debug\net6.0\refint\BusinessObjects.dll
+E:\bookstoreAPI\BusinessObjects\obj\Debug\net6.0\BusinessObjects.pdb
+E:\bookstoreAPI\BusinessObjects\obj\Debug\net6.0\BusinessObjects.genruntimeconfig.cache
+E:\bookstoreAPI\BusinessObjects\obj\Debug\net6.0\ref\BusinessObjects.dll

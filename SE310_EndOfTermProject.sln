@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test", "test\test.csproj", "{F6105BE0-BFA9-471A-BAF7-C1DA83802CA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreAPI", "BookstoreAPI\BookstoreAPI.csproj", "{942E1E4E-E2F0-4A4E-BC79-4426A15FA82C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookstoreAPI", "BookstoreAPI\BookstoreAPI.csproj", "{942E1E4E-E2F0-4A4E-BC79-4426A15FA82C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
