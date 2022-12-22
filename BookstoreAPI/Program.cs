@@ -39,6 +39,8 @@ var app = builder.Build();
 //Enable Swagger for prod temporarily, disable later
 if (!app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
+    
     app.UseSwagger();
     app.UseSwaggerUI(swagger =>
     {
