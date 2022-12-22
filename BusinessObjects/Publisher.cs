@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BusinessObjects
 {
@@ -15,6 +16,7 @@ namespace BusinessObjects
         public string Email { get; set; }
         public string Address { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Book> Books { get; set; }
     }
 }

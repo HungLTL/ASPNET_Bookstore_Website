@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BusinessObjects
 {
@@ -20,8 +21,11 @@ namespace BusinessObjects
         public int PublisherId { get; set; }
         public int? Quantity { get; set; }
 
+        [JsonIgnore]
         public virtual Category Category { get; set; }
+        [JsonIgnore]
         public virtual Publisher Publisher { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Review> Reviews { get; set; }
     }
 }

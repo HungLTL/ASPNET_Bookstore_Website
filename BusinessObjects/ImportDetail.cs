@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BusinessObjects
 {
@@ -9,7 +10,9 @@ namespace BusinessObjects
         public int BookId { get; set; }
         public int? Amount { get; set; }
 
+        [JsonIgnore]
         public virtual Book Book { get; set; }
+        [JsonIgnore]
         public virtual Import Import { get; set; }
     }
 }

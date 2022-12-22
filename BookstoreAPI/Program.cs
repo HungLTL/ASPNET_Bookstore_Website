@@ -11,8 +11,15 @@ using DataAccess.PurchaseDA;
 using DataAccess.PurchaseDetailDA;
 using DataAccess.ReviewDA;
 using DataAccess.UserDA;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+});
 
 // Add services to the container.
 builder.Services.AddDbContext<ffmlwpyhContext>(opt => opt.UseNpgsql(ConnStr.Get()));
@@ -56,3 +63,17 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public sealed class DateOnlyJsonConverter : JsonConverter<DateOnly>
+{
+    public override DateOnly Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        return DateOnly.FromDateTime(reader.GetDateTime());
+    }
+
+    public override void Write(Utf8JsonWriter writer, DateOnly value, JsonSerializerOptions options)
+    {
+        var isoDate = value.ToString("O");
+        writer.WriteStringValue(isoDate);
+    }
+}

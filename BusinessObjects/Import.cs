@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BusinessObjects
 {
@@ -9,6 +10,7 @@ namespace BusinessObjects
         public int UserId { get; set; }
         public DateOnly? Date { get; set; }
 
+        [JsonIgnore]
         public virtual User User { get; set; }
     }
 }
