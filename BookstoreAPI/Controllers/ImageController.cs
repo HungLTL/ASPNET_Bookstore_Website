@@ -17,7 +17,7 @@ namespace BookstoreAPI.Controllers
             {
                 string fName = string.Empty;
                 string[] name = fileName.Split('.');
-                fName = owner + '/' + "preview-" + DateTime.Now.ToUniversalTime().ToString("yyyyMMdd\\THHmmssff") + '.' + name[name.Length - 1];
+                fName = owner + '-' + "preview" + '-' + DateTime.Now.ToUniversalTime().ToString("yyyyMMdd\\THHmmssff") + '.' + name[name.Length - 1];
                 return fName;
             }
             catch (Exception ex) {
@@ -26,7 +26,7 @@ namespace BookstoreAPI.Controllers
             }
         }
 
-        [HttpPost("{owner}")]
+        [HttpPost("add/{owner}")]
         public async Task<IActionResult> addImage(string owner, IFormFile image)
         {
             try
@@ -59,23 +59,28 @@ namespace BookstoreAPI.Controllers
             }
         }
 
-        [HttpPut("{owner}/{url}")]
-        public async Task<IActionResult> replaceImage(string owner, string url)
+        [HttpPut("replace/{owner}/{url}")]
+        public async Task<IActionResult> replaceImage(string owner, string url, IFormFile image)
         {
-            
-            
-            return Ok(url);
+            try
+            {
+                await deleteImage(url);
+                return await addImage(owner, image);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
-        [HttpDelete("{url}")]
+        [HttpDelete("delete/{url}")]
         public async Task<IActionResult> deleteImage(string url)
         {
             BlobContainerClient containerClient = new BlobContainerClient(_connectionStr, _containerName);
             try
             {
                 await containerClient.GetBlobClient(url).DeleteAsync();
-                //return Ok($"Image deleted: {url}");
-                return Ok(true);
+                return Ok($"Image deleted: {url}");
             }
             catch (Exception ex)
             {
