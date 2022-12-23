@@ -8,6 +8,7 @@ namespace BusinessObjects
     {
         public int BookId { get; set; }
         public int AuthorId { get; set; }
+        public int Id { get; set; }
 
         [JsonIgnore]
         public virtual Author Author { get; set; }

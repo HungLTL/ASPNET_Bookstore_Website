@@ -8,6 +8,9 @@ namespace BusinessObjects
     {
         public Book()
         {
+            Bookauthors = new HashSet<Bookauthor>();
+            ImportDetails = new HashSet<ImportDetail>();
+            PurchaseDetails = new HashSet<PurchaseDetail>();
             Reviews = new HashSet<Review>();
         }
 
@@ -27,5 +30,11 @@ namespace BusinessObjects
         public virtual Publisher Publisher { get; set; }
         [JsonIgnore]
         public virtual ICollection<Review> Reviews { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<ImportDetail> ImportDetails { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Bookauthor> Bookauthors { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace BusinessObjects
         public int PurchaseId { get; set; }
         public int BookId { get; set; }
         public int? Amount { get; set; }
+        public int Id { get; set; }
 
         [JsonIgnore]
         public virtual Book Book { get; set; }

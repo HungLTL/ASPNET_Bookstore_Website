@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using BusinessObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using BusinessObjects;
 
 namespace DataAccess
 {
@@ -122,22 +122,22 @@ namespace DataAccess
 
             modelBuilder.Entity<Bookauthor>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("bookauthor");
+
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.AuthorId).HasColumnName("author_id");
 
                 entity.Property(e => e.BookId).HasColumnName("book_id");
 
                 entity.HasOne(d => d.Author)
-                    .WithMany()
+                    .WithMany(p => p.Bookauthors)
                     .HasForeignKey(d => d.AuthorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("bookauthor_author_id_fkey");
 
                 entity.HasOne(d => d.Book)
-                    .WithMany()
+                    .WithMany(p => p.Bookauthors)
                     .HasForeignKey(d => d.BookId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("bookauthor_book_id_fkey");
@@ -177,9 +177,9 @@ namespace DataAccess
 
             modelBuilder.Entity<ImportDetail>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("import_details");
+
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Amount).HasColumnName("amount");
 
@@ -188,13 +188,13 @@ namespace DataAccess
                 entity.Property(e => e.ImportId).HasColumnName("import_id");
 
                 entity.HasOne(d => d.Book)
-                    .WithMany()
+                    .WithMany(p => p.ImportDetails)
                     .HasForeignKey(d => d.BookId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("import_details_book_id_fkey");
 
                 entity.HasOne(d => d.Import)
-                    .WithMany()
+                    .WithMany(p => p.ImportDetails)
                     .HasForeignKey(d => d.ImportId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("import_details_import_id_fkey");
@@ -244,9 +244,9 @@ namespace DataAccess
 
             modelBuilder.Entity<PurchaseDetail>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("purchase_details");
+
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Amount).HasColumnName("amount");
 
@@ -255,13 +255,13 @@ namespace DataAccess
                 entity.Property(e => e.PurchaseId).HasColumnName("purchase_id");
 
                 entity.HasOne(d => d.Book)
-                    .WithMany()
+                    .WithMany(p => p.PurchaseDetails)
                     .HasForeignKey(d => d.BookId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("purchase_details_book_id_fkey");
 
                 entity.HasOne(d => d.Purchase)
-                    .WithMany()
+                    .WithMany(p => p.PurchaseDetails)
                     .HasForeignKey(d => d.PurchaseId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("purchase_details_purchase_id_fkey");
