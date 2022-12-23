@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using BusinessObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using BusinessObjects;
 
 namespace DataAccess
 {
@@ -85,7 +85,9 @@ namespace DataAccess
 
                 entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
-                entity.Property(e => e.Image).HasColumnName("image");
+                entity.Property(e => e.Image)
+                    .HasColumnType("character varying")
+                    .HasColumnName("image");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)

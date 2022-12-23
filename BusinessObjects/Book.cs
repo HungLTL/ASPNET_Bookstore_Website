@@ -16,7 +16,7 @@ namespace BusinessObjects
         public string Summary { get; set; }
         public int? PublishedYear { get; set; }
         public decimal? UnitPrice { get; set; }
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
         public int CategoryId { get; set; }
         public int PublisherId { get; set; }
         public int? Quantity { get; set; }
