@@ -124,8 +124,14 @@ namespace DataAccess.ReviewDA
             {
                 try
                 {
+                    Review rev = new Review();
+                    rev.UserId = review.UserId;
+                    rev.BookId = review.BookId;
+                    rev.Rating = review.Rating;
+                    rev.Comment = review.Comment;
+
                     var context = new ffmlwpyhContext();
-                    context.Reviews.Add(review);
+                    context.Reviews.Add(rev);
                     context.SaveChanges();
                     return 1;
                 }

@@ -93,9 +93,9 @@ namespace DataAccess.AuthorDA
                     try
                     {
                         var context = new ffmlwpyhContext();
-                        int newId = context.Authors.OrderByDescending(a => a.Id).FirstOrDefault().Id + 1;
-                        author.Id = newId;
-                        context.Authors.Add(author);
+                        Author auth = new Author();
+                        auth.Name = author.Name;
+                        context.Authors.Add(auth);
                         context.SaveChanges();
                         return 1;
                     }

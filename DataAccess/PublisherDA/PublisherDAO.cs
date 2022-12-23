@@ -108,9 +108,11 @@ namespace DataAccess.PublisherDA
                     try
                     {
                         var context = new ffmlwpyhContext();
-                        int newId = context.Publishers.OrderByDescending(p => p.Id).FirstOrDefault().Id + 1;
-                        publisher.Id = newId;
-                        context.Publishers.Add(publisher);
+                        Publisher pub = new Publisher();
+                        pub.Name = publisher.Name;
+                        pub.Address = publisher.Address;
+                        pub.Email = publisher.Email;
+                        context.Publishers.Add(pub);
                         context.SaveChanges();
                         return 1;
                     }

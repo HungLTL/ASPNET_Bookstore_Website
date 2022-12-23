@@ -119,9 +119,16 @@ namespace DataAccess.BookDA
                     try
                     {
                         var context = new ffmlwpyhContext();
-                        int newId = context.Books.OrderByDescending(b => b.Id).FirstOrDefault().Id + 1;
-                        book.Id = newId;
-                        context.Books.Add(book);
+                        Book bk = new Book();
+                        bk.Name = book.Name;
+                        bk.Summary = book.Summary;
+                        bk.PublishedYear = book.PublishedYear;
+                        bk.UnitPrice = book.UnitPrice;
+                        bk.Image = book.Image;
+                        bk.CategoryId = book.CategoryId;
+                        bk.PublisherId = book.PublisherId;
+                        bk.Quantity = book.Quantity;
+                        context.Books.Add(bk);
                         context.SaveChanges();
                         return 1;
                     }

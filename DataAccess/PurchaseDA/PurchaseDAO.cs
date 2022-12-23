@@ -115,9 +115,11 @@ namespace DataAccess.PurchaseDA
                 try
                 {
                     var context = new ffmlwpyhContext();
-                    int newId = context.Purchases.OrderByDescending(p => p.Id).FirstOrDefault().Id + 1;
-                    purchase.Id = newId;
-                    context.Purchases.Add(purchase);
+                    Purchase prch = new Purchase();
+                    prch.UserId = purchase.UserId;
+                    prch.Date = purchase.Date;
+                    prch.Discount = purchase.Discount;
+                    context.Purchases.Add(prch);
                     context.SaveChanges();
                     return 1;
                 }

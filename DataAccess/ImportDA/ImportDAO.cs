@@ -90,9 +90,10 @@ namespace DataAccess.ImportDA
                 try
                 {
                     var context = new ffmlwpyhContext();
-                    int newId = context.Imports.OrderByDescending(i => i.Id).FirstOrDefault().Id + 1;
-                    import.Id = newId;
-                    context.Imports.Add(import);
+                    Import imp = new Import();
+                    imp.UserId = import.UserId;
+                    imp.Date = import.Date;
+                    context.Imports.Add(imp);
                     context.SaveChanges();
                     return 1;
                 }

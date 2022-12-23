@@ -123,9 +123,15 @@ namespace DataAccess.UserDA
                     try
                     {
                         var context = new ffmlwpyhContext();
-                        int newId = context.Users.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
-                        user.Id = newId;
-                        context.Users.Add(user);
+                        User usr = new User();
+                        usr.Username = user.Username;
+                        usr.Email = user.Email;
+                        usr.Password = user.Password;
+                        usr.RoleId = user.RoleId;
+                        usr.Dob = user.Dob;
+                        usr.Address = user.Address;
+
+                        context.Users.Add(usr);
                         context.SaveChanges();
                         return 1;
                     } catch (Exception e)
