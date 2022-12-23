@@ -50,13 +50,48 @@ namespace DataAccess.BookDA
             try
             {
                 var context = new ffmlwpyhContext();
-                books = context.Books.Where(
+                /*books = context.Books.Where(
                     b => (search == null || b.Name.Contains(search))
                     && (publishedYear == null || b.PublishedYear == publishedYear)
                     && (unitPrice == null || b.UnitPrice <= unitPrice)
                     && (categoryId == null || b.CategoryId == categoryId)
                     && (publisher == null || b.PublisherId == PublisherDAO.Instance.getPublisher(publisher).Id))
-                    .ToList();
+                    .ToList();*/
+
+                List<Book> filteredBooks = new List<Book>();
+                if (search is not null)
+                {
+                    filteredBooks.AddRange(context.Books.Where(b => b.Name.Contains(search.Trim())).ToList());
+                }
+                else
+                {
+                    filteredBooks.AddRange(context.Books.ToList());
+                }
+
+                if (publishedYear is not null)
+                {
+                    filteredBooks.AddRange(context.Books.Where(b => b.PublishedYear == publishedYear).ToList());
+                }
+
+                if (unitPrice is not null)
+                {
+                    //let bU be b.UnitPrice in (0 <= bU <= unitPrice)
+                    filteredBooks.AddRange(context.Books.Where(b => (b.UnitPrice >= 0 && Nullable.Compare(b.UnitPrice, unitPrice) <= 0)).ToList());
+                }
+
+                if (categoryId is not null)
+                {
+                    filteredBooks.AddRange(context.Books.Where(b => b.CategoryId == categoryId).ToList());
+                }
+
+                if (publisher is not null)
+                {
+                    var publisherId = context.Publishers.Where(p => p.Name.Contains(publisher.Trim())).First().Id;
+
+                    filteredBooks.AddRange(context.Books.Where(b => b.PublisherId == publisherId).ToList());
+                }
+
+                books = filteredBooks.Distinct().ToList();
             }
             catch (Exception e)
             {
