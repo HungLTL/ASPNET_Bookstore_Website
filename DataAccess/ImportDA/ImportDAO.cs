@@ -86,7 +86,21 @@ namespace DataAccess.ImportDA
                 }
             }
             else
-                throw new Exception("Import already exists!");
+            {
+                try
+                {
+                    var context = new ffmlwpyhContext();
+                    int newId = context.Imports.OrderByDescending(i => i.Id).FirstOrDefault().Id + 1;
+                    import.Id = newId;
+                    context.Imports.Add(import);
+                    context.SaveChanges();
+                    return 1;
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+            }
         }
 
         public int updateImport(Import import)

@@ -83,6 +83,21 @@ namespace DataAccess.UserDA
             return user;
         }
 
+        public User validateCredentials(string username, string email)
+        {
+            User user = null;
+            try
+            {
+                var context = new ffmlwpyhContext();
+                user = context.Users.SingleOrDefault(u => u.Username.Equals(username) && u.Email.Equals(email));
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return user;
+        }
+
         public int addUser(User user)
         {
             User _user = getUser(user.Id);
@@ -101,7 +116,25 @@ namespace DataAccess.UserDA
                 }
             }
             else
+            {
+                User _user1 = validateCredentials(user.Username, user.Email);
+                if (_user1 == null)
+                {
+                    try
+                    {
+                        var context = new ffmlwpyhContext();
+                        int newId = context.Users.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
+                        user.Id = newId;
+                        context.Users.Add(user);
+                        context.SaveChanges();
+                        return 1;
+                    } catch (Exception e)
+                    {
+                        throw new Exception(e.Message);
+                    }
+                }
                 throw new Exception("User already exists!");
+            }
         }
 
         public int updateUser(User user)

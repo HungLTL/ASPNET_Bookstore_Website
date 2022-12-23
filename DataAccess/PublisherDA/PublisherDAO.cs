@@ -68,6 +68,21 @@ namespace DataAccess.PublisherDA
             return publisher;
         }
 
+        public Publisher getPublisherByExactName(string name)
+        {
+            Publisher publisher = null;
+            try
+            {
+                var context = new ffmlwpyhContext();
+                publisher = context.Publishers.SingleOrDefault(p => p.Name.Equals(name));
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return publisher;
+        }
+
         public int addPublisher(Publisher publisher)
         {
             Publisher _publisher = getPublisher(publisher.Id);
@@ -85,7 +100,27 @@ namespace DataAccess.PublisherDA
                     throw new Exception(e.Message);
                 }
             }
-            else throw new Exception("Publisher already exists!");
+            else
+            {
+                Publisher _pub = getPublisherByExactName(publisher.Name);
+                if (_pub == null)
+                {
+                    try
+                    {
+                        var context = new ffmlwpyhContext();
+                        int newId = context.Publishers.OrderByDescending(p => p.Id).FirstOrDefault().Id + 1;
+                        publisher.Id = newId;
+                        context.Publishers.Add(publisher);
+                        context.SaveChanges();
+                        return 1;
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(e.Message);
+                    }
+                }
+                throw new Exception("Publisher already exists!");
+            }
         }
 
         public int updatePublisher(Publisher publisher)

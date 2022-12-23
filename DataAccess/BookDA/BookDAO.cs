@@ -79,6 +79,21 @@ namespace DataAccess.BookDA
             return book;
         }
 
+        public Book getBook(string name)
+        {
+            Book? book = null;
+            try
+            {
+                var context = new ffmlwpyhContext();
+                book = context.Books.SingleOrDefault(b => b.Name.Equals(name));
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return book;
+        }
+
         public int addBook(Book book)
         {
             Book _book = getBook(book.Id);
@@ -97,7 +112,26 @@ namespace DataAccess.BookDA
                 }
             }
             else
-                throw new Exception("Book already exists!");
+            {
+                Book _book1 = getBook(book.Name);
+                if (_book1 == null)
+                {
+                    try
+                    {
+                        var context = new ffmlwpyhContext();
+                        int newId = context.Books.OrderByDescending(b => b.Id).FirstOrDefault().Id + 1;
+                        book.Id = newId;
+                        context.Books.Add(book);
+                        context.SaveChanges();
+                        return 1;
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(e.Message);
+                    }
+                }
+                else throw new Exception("Book already exists!");
+            }
         }
 
         public int updateBook(Book book)

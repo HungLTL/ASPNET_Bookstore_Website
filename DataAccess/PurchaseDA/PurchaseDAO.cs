@@ -111,7 +111,21 @@ namespace DataAccess.PurchaseDA
                 }
             }
             else
-                throw new Exception("Purchase already exists!");
+            {
+                try
+                {
+                    var context = new ffmlwpyhContext();
+                    int newId = context.Purchases.OrderByDescending(p => p.Id).FirstOrDefault().Id + 1;
+                    purchase.Id = newId;
+                    context.Purchases.Add(purchase);
+                    context.SaveChanges();
+                    return 1;
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+            }
         }
 
         public int updatePurchase(Purchase purchase)
