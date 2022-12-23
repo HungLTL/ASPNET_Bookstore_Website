@@ -275,3 +275,8 @@ C:\Users\GF63\source\repos\SE310_EndOfTermProject\BookstoreAPI\obj\Debug\net6.0\
 C:\Users\GF63\source\repos\SE310_EndOfTermProject\BookstoreAPI\obj\Debug\net6.0\BookstoreAPI.pdb
 C:\Users\GF63\source\repos\SE310_EndOfTermProject\BookstoreAPI\obj\Debug\net6.0\BookstoreAPI.genruntimeconfig.cache
 C:\Users\GF63\source\repos\SE310_EndOfTermProject\BookstoreAPI\obj\Debug\net6.0\ref\BookstoreAPI.dll
+C:\Users\GF63\source\repos\SE310_EndOfTermProject\BookstoreAPI\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\GF63\source\repos\SE310_EndOfTermProject\BookstoreAPI\bin\Debug\net6.0\Azure.Storage.Blobs.dll
+C:\Users\GF63\source\repos\SE310_EndOfTermProject\BookstoreAPI\bin\Debug\net6.0\Azure.Storage.Common.dll
+C:\Users\GF63\source\repos\SE310_EndOfTermProject\BookstoreAPI\bin\Debug\net6.0\System.IO.Hashing.dll
+C:\Users\GF63\source\repos\SE310_EndOfTermProject\BookstoreAPI\bin\Debug\net6.0\System.Memory.Data.dll

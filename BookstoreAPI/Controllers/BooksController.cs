@@ -31,8 +31,8 @@ namespace BookstoreAPI.Controllers
                 return Ok(book);
         }
 
-        [HttpGet("{search}/{year}/{price}/{category}/{publisher}")]
-        public async Task<ActionResult<IEnumerable<Book>>> SearchBooks(string? search, int? year, decimal? price, int? category, string? publisher)
+        [HttpGet("{search?}/{year?}/{price?}/{category?}/{publisher?}")]
+        public async Task<ActionResult<IEnumerable<Book>>> SearchBooks(string search = "", int year = 1900, decimal price = 0, int category = 0, string publisher = "")
         {
             return await Task.FromResult(_repo.searchBooks(search, year, price, category, publisher).ToList());
         }

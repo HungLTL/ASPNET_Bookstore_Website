@@ -67,8 +67,9 @@ namespace DataAccess
                 entity.ToTable("author");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn()
+                    .HasIdentityOptions(3L);
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
@@ -80,8 +81,9 @@ namespace DataAccess
                 entity.ToTable("book");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn()
+                    .HasIdentityOptions(6L);
 
                 entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
@@ -161,8 +163,8 @@ namespace DataAccess
                 entity.ToTable("import");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Date).HasColumnName("date");
 
@@ -205,8 +207,9 @@ namespace DataAccess
                 entity.ToTable("publisher");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn()
+                    .HasIdentityOptions(3L);
 
                 entity.Property(e => e.Address)
                     .HasMaxLength(100)
@@ -226,8 +229,8 @@ namespace DataAccess
                 entity.ToTable("purchase");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Date).HasColumnName("date");
 
@@ -272,8 +275,8 @@ namespace DataAccess
                 entity.ToTable("review");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.BookId).HasColumnName("book_id");
 
@@ -316,8 +319,9 @@ namespace DataAccess
                 entity.ToTable("users");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn()
+                    .HasIdentityOptions(2L);
 
                 entity.Property(e => e.Address)
                     .HasMaxLength(100)
