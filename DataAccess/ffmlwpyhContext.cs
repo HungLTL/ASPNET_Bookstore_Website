@@ -69,7 +69,7 @@ namespace DataAccess
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .UseIdentityAlwaysColumn()
-                    .HasIdentityOptions(3L);
+                    .HasIdentityOptions(5L);
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
@@ -83,7 +83,7 @@ namespace DataAccess
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .UseIdentityAlwaysColumn()
-                    .HasIdentityOptions(6L);
+                    .HasIdentityOptions(7L);
 
                 entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
@@ -209,7 +209,7 @@ namespace DataAccess
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .UseIdentityAlwaysColumn()
-                    .HasIdentityOptions(3L);
+                    .HasIdentityOptions(4L);
 
                 entity.Property(e => e.Address)
                     .HasMaxLength(100)
